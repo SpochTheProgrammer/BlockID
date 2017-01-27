@@ -11,18 +11,15 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class main
-extends JavaPlugin
-implements Listener {
-    public String cmdsender;
-    public int BlockIDToggle;
-    FileConfiguration config;
+public class Main extends JavaPlugin implements Listener {
+	public String cmdsender;public int;
+	FileConfiguration config;
 
-    public main() {
-        this.config = this.getConfig();
-    }
+	public main() {
+		this.config = this.getConfig();
+	}
 
-    public void onEnable() {
+	public void onEnable() {
         this.config.addDefault("Message when breaking block", (Object)"&9The ID of the block is");
         this.config.addDefault("Prefix for message when breaking block", (Object)"&e");
         this.config.addDefault("Toggle on message", (Object)"&cShow block ID &ewas toggled on, break a block to get ID");
@@ -30,30 +27,30 @@ implements Listener {
         this.config.options().copyDefaults(true);
         this.saveConfig();
         this.getServer().getPluginManager().registerEvents((Listener)this, (Plugin)this);
-        this.BlockIDToggle = 0;
+        this. = 0;
     }
 
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         this.cmdsender = sender.toString();
         if (cmd.getName().equalsIgnoreCase("id") && sender.hasPermission("BlockID.toggle")) {
             String ToggleOnMessage = this.config.getString("Toggle on message");
             String ToggleOffMessage = this.config.getString("Toggle off message");
-            if (this.BlockIDToggle == 1) {
+            if (this. == 1) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes((char)'&', (String)ToggleOffMessage));
-                this.BlockIDToggle = 0;
-            } else if (this.BlockIDToggle == 0) {
+                this. = 0;
+            } else if (this.blockIDToggle == 0) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes((char)'&', (String)ToggleOnMessage));
-                this.BlockIDToggle = 1;
+                this. = 1;
             }
         }
         return false;
     }
 
-    @EventHandler
+	@EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         @SuppressWarnings("deprecation")
 		byte data = event.getBlock().getData();
-        if (this.BlockIDToggle == 1) {
+        if (this. == 1) {
             String BreakBlockMessage = this.config.getString("Message when breaking block");
             String BreakBlockPrefix = this.config.getString("Prefix for message when breaking block");
             Player player = event.getPlayer();
@@ -62,7 +59,7 @@ implements Listener {
                 event.setCancelled(true);
                 player.sendMessage(ChatColor.translateAlternateColorCodes((char)'&', (String)(String.valueOf(BreakBlockMessage) + " " + BreakBlockPrefix + (Object)event.getBlock().getType() + ":" + data)));
             } else {
-                this.BlockIDToggle = 0;
+                this. = 0;
             }
         }
     }
