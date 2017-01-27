@@ -1,4 +1,4 @@
-main: me.spoch.blockid.main
+main: me.spoch.blockid.Main
 name: BlockID
 version: 1.0
 author: Spoch
