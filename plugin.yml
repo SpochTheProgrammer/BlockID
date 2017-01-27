@@ -1,0 +1,6 @@
+main: me.spoch.blockid.main
+name: BlockID
+version: 1.0
+author: Spoch
+commands:
+  id:
